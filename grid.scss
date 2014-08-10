@@ -1,0 +1,68 @@
+/* ***********************************************
+ * Simple CSS grid 
+ * Create by Doxa, http://github.com/doxadoxa/
+ * ***********************************************/
+
+/* Column count */
+$colcount : 12; 
+
+/* Size and offsets */
+$colwidth : 75/$colcount; // for 12 - 6.25%, 75 percents of 
+$colml: 25/($colcount-1); // for 12 - 2.272727%, 25 percents for $colcount-1 elment;
+$pagemargin : 4.1666%; // default margin
+$maxlayoutwidth : 1440px; // maximum layout width
+
+/* Layout styles */
+
+.layout {
+	margin: 0 auto;
+	max-width: $maxlayoutwidth;
+
+	.wrapper {
+		clear: both;
+		padding: 0 $pagemargin;
+
+		@media screen and (max-width: 1100px) {
+			padding: 0 3.1666%;
+		}
+
+		/* Columns definition */
+
+		@for $i from 1 through $colcount {
+			.col#{$i} {
+				float: left;
+				margin-right: $colml;
+
+				width: ($colwidth+$colml)*$i - $colml;
+
+				&.last {
+					margin: 0;
+				}
+			}
+		}
+
+		/* Columns definition end */
+
+		/* Margins */
+
+		@for $i from 1 through ($colcount-1) {
+			.margin#{$i} {
+				margin-left: ($colwidth+$colml)*$i !important;
+			}
+		}
+
+		/* Margins end */
+
+		/* Medias */
+
+		@media all and (min-width: 1024px) {
+			max-width: 1000px;
+
+			.wrapper {
+				padding: 0;
+			}
+		}
+
+		/* Medias end */
+	}
+}
